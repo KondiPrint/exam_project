@@ -12,10 +12,6 @@ module.exports = {
         offWhite: '#FBF8F4',
         fontFarve: '#262626',
       },
-      fontFamily: {
-        sans: ['Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        heading: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-      },
       animation: {
         heartbeat: 'heartbeat .6s ease-out',
         jiggle: 'jiggle 2s ease-in-out',
