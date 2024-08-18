@@ -1,0 +1,74 @@
+{
+  "wonders": [
+    {
+      "id": 1,
+      "name": "The Great Wall of China",
+      "location": "China",
+      "description": "Ancient series of walls and fortifications, totaling more than 13,000 miles in length.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg/800px-The_Great_Wall_of_China_at_Jinshanling-edit.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Eiffel Tower",
+      "location": "France",
+      "description": "Wrought-iron lattice tower on the Champ de Mars in Paris, named after the engineer Gustave Eiffel.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Statue of Liberty",
+      "location": "United States",
+      "description": "Colossal neoclassical sculpture on Liberty Island in New York Harbor, designed by Frédéric Auguste Bartholdi.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Statue_of_Liberty_7.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Machu Picchu",
+      "location": "Peru",
+      "description": "15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a mountain ridge.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Machu_Picchu%2C_Peru.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Colosseum",
+      "location": "Italy",
+      "description": "Large amphitheater in Rome, known for gladiatorial contests and public spectacles.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/de/Colosseo_2020.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Taj Mahal",
+      "location": "India",
+      "description": "Ivory-white marble mausoleum on the south bank of the Yamuna river in the Indian city of Agra.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/da/Taj-Mahal.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Christ the Redeemer",
+      "location": "Brazil",
+      "description": "Gigantic statue of Jesus Christ in Rio de Janeiro, Brazil, created by French sculptor Paul Landowski.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Christ_the_Redeemer_-_Cristo_Redentor.jpg/800px-Christ_the_Redeemer_-_Cristo_Redentor.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Sydney Opera House",
+      "location": "Australia",
+      "description": "Multi-venue performing arts centre in Sydney, known for its distinctive sail-like design.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Sydney_Australia._%2821339175489%29.jpg/800px-Sydney_Australia._%2821339175489%29.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Mount Fuji",
+      "location": "Japan",
+      "description": "Active stratovolcano and the tallest mountain in Japan, located on Honshu Island.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Views_of_Mount_Fuji_from_%C5%8Cwakudani_20211202.jpg/800px-Views_of_Mount_Fuji_from_%C5%8Cwakudani_20211202.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Stonehenge",
+      "location": "United Kingdom",
+      "description": "Prehistoric monument in Wiltshire, England, consisting of a ring of standing stones.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Stonehenge2007_07_30.jpg"
+    }
+  ]
+}
