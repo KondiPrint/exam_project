@@ -11,6 +11,21 @@ export default function DrawerMenu() {
   const pathname = usePathname();
   const { data: session } = useSession();
 
+  const { data, isLoading, error, makeRequest } = useRequestData();
+
+  useEffect(() => {
+    // Make the request when the component mounts
+    makeRequest('http://localhost:5888/eventcategories');
+  }, []);
+
+  const navLinks = [
+    { name: 'Forside', href: '/' },
+    { name: 'Om os', href: '/omos' },
+    { name: 'Events', href: '/events', isDropdown: true },
+    { name: 'Kontakt', href: '/kontakt' },
+    { name: 'Nyheder', href: '/nyheder' },
+  ];
+
   const navLinksDrop = [
     { name: 'Wonders', href: '/wonders' },
     { name: 'Gallery', href: '/gallery' },

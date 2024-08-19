@@ -6,6 +6,7 @@ const Footer = dynamic(() => import('@/components/Layout/Footer'));
 import CookieBanner from '@/components/Layout/Cookies';
 import Providers from './utils/providers';
 import { Metadata } from 'next';
+import TestHeader from '@/components/Layout/TestHeader';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,9 +21,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en' className='scroll-smooth'>
-      <body className='min-h-dvh flex flex-col bg-base-100 text-base-content'>
+      <body className='min-h-dvh flex flex-col'>
         <Providers>
-          <Header />
+          {/* <TestHeader /> */}
+          {/* <Header /> */}
           <main className='snap-mandatory snap-y'>
             {children}
             {/* <CookieBanner /> */}

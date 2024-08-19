@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,9 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        offWhite: '#FBF8F4',
-        fontFarve: '#262626',
+      fontFamily: {
+        archivo: ['Archivo', 'sans-serif'],
+        lexend: ['Lexend', 'sans-serif'],
+      },
+      backgroundImage: {
+        'grey-bg': "url('/assets/image/bg2.jpg')",
+        'blue-bg': "url('/assets/image/bg1.jpg')",
+        'white-pattern': "url('/assets/image/bg5.jpg')",
+        'topo-pattern': "url('/assets/image/contour.png')",
       },
       animation: {
         heartbeat: 'heartbeat .6s ease-out',
@@ -140,25 +145,31 @@ module.exports = {
       {
         light: {
           ...require('daisyui/src/theming/themes')['light'],
-          primary: '#9B68F0',
-          secondary: '#6C67F0',
-          accent: '#C462F0',
-          'base-content': '#262626',
-          'base-100': '#FBF8F4',
+          primary: '#D45D79', // pinkishRed
+          secondary: '#666666', // gray2
+          accent: '#AAAAAA', // gray1
+          neutral: '#555555', // gray3
+          info: '#293B5F', // blueGray
+          success: '#6C67F0', // custom color or replace
+          warning: '#9B68F0', // custom color or replace
+          error: '#261C2C', // darkPurple
         },
       },
       {
         dark: {
           ...require('daisyui/src/theming/themes')['dark'],
-          primary: '#9B68F0',
-          secondary: '#6C67F0',
-          accent: '#C462F0',
-          'base-content': '#FBF8F4',
-          'base-100': '#262626',
+          primary: '#D45D79', // pinkishRed
+          secondary: '#666666', // gray2
+          accent: '#AAAAAA', // gray1
+          neutral: '#555555', // gray3
+          info: '#293B5F', // blueGray
+          success: '#6C67F0', // custom color or replace
+          warning: '#9B68F0', // custom color or replace
+          error: '#261C2C', // darkPurple
         },
       },
     ],
-    darkTheme: 'dark',
+    darkTheme: 'light',
     base: true,
     styled: true,
     utils: true,
