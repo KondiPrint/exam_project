@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { FaChevronCircleUp } from 'react-icons/fa';
+import { FaArrowUp } from 'react-icons/fa';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,11 +31,11 @@ export default function ScrollToTop() {
 
   return (
     <button
-      className={`fixed hover:brightness-200 bottom-2 right-1 rounded-full p-2 outline-none transition-all duration-500 z-50 ${
+      className={`fixed hover:brightness-200 bottom-5 right-5 btn outline-none transition-all duration-500 z-50 ${
         isVisible ? 'block' : 'hidden'
       }`}
       onClick={scrollToTop}>
-      <FaChevronCircleUp className='size-6 fill-primary' />
+      <FaArrowUp className='size-3' />
     </button>
   );
 }

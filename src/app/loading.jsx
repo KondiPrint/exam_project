@@ -5,5 +5,5 @@ export default function Loading() {
   useEffect(() => {
     document.querySelector('dialog').showModal();
   }, []);
-  return <dialog className='loading loading-spinner w-36 min-h-dvh'></dialog>;
+  return <dialog className='loading loading-spinner w-36 min-h-dvh text-white'></dialog>;
 }

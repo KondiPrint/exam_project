@@ -3,7 +3,7 @@ import React from 'react';
 export default function AmountPerSite({
   setAmountPerSite,
   setCurrentSite,
-  options = [5, 10, 20, 30],
+  options = [3, 6, 9, 12],
   amountPerSite,
 }) {
   return (

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-export default function Lightbox({ image, onClose }) {
+export default function Lightbox({ image, onClose, dataEvents }) {
   const [animation, setAnimation] = useState('animate-zoom-in');
 
   const handleCloseClick = () => {
@@ -65,7 +65,7 @@ export default function Lightbox({ image, onClose }) {
             </button>
           </div>
           <Image
-            src={image.src}
+            src={image}
             alt={image.txt || 'Lightbox image'}
             width={800}
             height={800}

@@ -5,7 +5,7 @@ import useRequestData from '@/app/lib/useRequestData';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 
-export default function JsonUpdatePost() {
+export default function UpdateEvent() {
   const { id } = useParams();
 
   const { data, isLoading, error, makeRequest } = useRequestData();

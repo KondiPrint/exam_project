@@ -14,7 +14,6 @@ export default function DrawerMenu() {
   const { data, isLoading, error, makeRequest } = useRequestData();
 
   useEffect(() => {
-    // Make the request when the component mounts
     makeRequest('http://localhost:5888/eventcategories');
   }, []);
 

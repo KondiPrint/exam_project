@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import JsonDeletePost from '@/components/JsonPlaceholder/DeletePost';
+import DeleteEvent from '@/components/Events/DeleteEvent';
 import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import Link from 'next/link';
 import AmountPerSite from '@/components/Pagination/AmountPerSite';
 import PrevNext from '@/components/Pagination/Prev_Next';
 
-export default function EditPosts() {
+export default function EditEvent() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -67,7 +67,7 @@ export default function EditPosts() {
               <p>{post.title?.length > 30 ? `${post.title.substring(0, 90)}...` : post.title}</p>
 
               <div className='card-actions justify-between'>
-                <JsonDeletePost postId={post.id} />
+                <DeleteEvent postId={post.id} />
                 <button className='btn btn-small btn-ghost'>
                   <Link href={`/dashboard/editposts/${post.id}`}>
                     <FaEdit className='text-green-800 size-8' />

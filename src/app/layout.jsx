@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google';
+import { Inter, Archivo, Lexend } from 'next/font/google';
 import './globals.css';
 import dynamic from 'next/dynamic';
 const Header = dynamic(() => import('@/components/Layout/Header'));
@@ -6,9 +6,9 @@ const Footer = dynamic(() => import('@/components/Layout/Footer'));
 import CookieBanner from '@/components/Layout/Cookies';
 import Providers from './utils/providers';
 import { Metadata } from 'next';
-import TestHeader from '@/components/Layout/TestHeader';
 
-const inter = Inter({ subsets: ['latin'] });
+const archivo = Archivo({ subsets: ['latin'], display: 'swap' });
+const lexend = Lexend({ subsets: ['latin'], display: 'swap' });
 
 export const metadata = {
   title: {
@@ -20,15 +20,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en' className='scroll-smooth'>
+    <html lang='en' className={`${archivo.className} ${lexend.className} scroll-smooth`}>
       <body className='min-h-dvh flex flex-col'>
         <Providers>
-          {/* <TestHeader /> */}
           {/* <Header /> */}
-          <main className='snap-mandatory snap-y'>
-            {children}
-            {/* <CookieBanner /> */}
-          </main>
+
+          <main className='animate-fade-in'>{children}</main>
           <Footer />
         </Providers>
       </body>

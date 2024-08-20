@@ -1,115 +1,273 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import ScrollToTop from './ScrollToTop';
-import ThemeToggler from './ThemeToggle';
 import { usePathname } from 'next/navigation';
-import DrawerMenu from './DrawerMenu';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import useRequestData from '@/app/lib/useRequestData';
+import ScrollToTop from './ScrollToTop';
+import {
+  FaInstagram,
+  FaPinterest,
+  FaTwitter,
+  FaFacebook,
+  FaRegBuilding,
+  FaRegCalendarAlt,
+} from 'react-icons/fa';
+import { MdOutlineEmail } from 'react-icons/md';
 
 export default function Header() {
+  const [isFixed, setIsFixed] = useState(false);
   const pathname = usePathname();
   const { data: session } = useSession();
+
+  // Ensure the hook returns an object with these properties
   const { data, isLoading, error, makeRequest } = useRequestData();
+  const {
+    data: dataInfo,
+    isLoading: isLoadingInfo,
+    error: errorInfo,
+    makeRequest: makeRequestInfo,
+  } = useRequestData();
 
   useEffect(() => {
-    // Make the request when the component mounts
     makeRequest('http://localhost:5888/eventcategories');
+  }, []);
+
+  useEffect(() => {
+    makeRequestInfo('http://localhost:5888/contactinformation');
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const navLinks = [
     { name: 'Forside', href: '/' },
     { name: 'Om os', href: '/omos' },
-    { name: 'Events', href: '/events', isDropdown: true },
+    { name: 'Events', isDropdown: true },
     { name: 'Kontakt', href: '/kontakt' },
     { name: 'Nyheder', href: '/nyheder' },
   ];
 
   return (
-    <header
-      id='top'
-      className='fixed bg-white w-11/12 mx-auto p-2 z-10 transform -translate-x-1/2 left-1/2 rounded-md top-5 shadow-md'>
-      <nav className='navbar'>
-        <div className='flex-1 gap-4'>
-          <Link href={'/'} className=''>
-            <Image
-              src='/assets/image/logo-black.png'
-              alt='Logo'
-              className='text-black'
-              width={100}
-              height={100}
-            />
-          </Link>
+    <header className='drawer z-10 items-center'>
+      <input id='my-drawer-3' type='checkbox' className='drawer-toggle' />
+      <div className='drawer-content flex flex-col'>
+        {dataInfo && (
+          <div className='justify-between items-center p-2 hidden lg:flex'>
+            <ul className='flex gap-10'>
+              <li className='flex gap-2 items-center'>
+                <FaRegBuilding />
+                Klubhuset: {dataInfo.address}, {dataInfo.zipcity}
+              </li>
+              <li className='flex gap-2 items-center'>
+                <FaRegCalendarAlt />
+                {dataInfo.openinghours}
+              </li>
+              <li className='flex gap-2 items-center'>
+                <MdOutlineEmail />
+                {dataInfo.email}
+              </li>
+            </ul>
+            <ul className='flex gap-2'>
+              <li>
+                <FaInstagram />
+              </li>
+              <li>
+                <FaPinterest />
+              </li>
+              <li>
+                <FaTwitter />
+              </li>
+              <li>
+                <FaFacebook />
+              </li>
+            </ul>
+          </div>
+        )}
+        {/* Navbar */}
+        <div
+          className={`navbar bg-white mx-auto p-0 mt-2 rounded-md shadow-lg ${
+            isFixed ? 'fixed top-0 left-1/2 w-11/12 transform -translate-x-1/2 animate-fade-in' : ''
+          }`}>
+          <div className='mx-2 flex-1 px-4'>
+            <Link href={'/'}>
+              <Image
+                src='/assets/image/logo-black.png'
+                alt='Logo'
+                width={100}
+                height={100}
+                className='size-full'
+              />
+            </Link>
+          </div>
+          <div className='flex-none lg:hidden navbar-end'>
+            <label
+              htmlFor='my-drawer-3'
+              aria-label='open sidebar'
+              className='btn btn-square btn-ghost'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                className='inline-block h-6 w-6 stroke-current'>
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M4 6h16M4 12h16M4 18h16'></path>
+              </svg>
+            </label>
+          </div>
+          <div className='hidden flex-none lg:block h-full '>
+            <ul className='menu menu-horizontal h-16 m-0 p-0'>
+              {navLinks.map((link, index) => {
+                const isActive = pathname.startsWith(link.href);
 
-          {/*  <ThemeToggler /> */}
-        </div>
+                if (link.isDropdown) {
+                  return (
+                    <li key={index} className='dropdown dropdown-hover'>
+                      <div
+                        tabIndex={0}
+                        className={`rounded-none h-16 w-full items-center flex ${
+                          isActive
+                            ? 'text-primary font-bold'
+                            : 'font-normal hover:border-b-4 hover:border-primary'
+                        }`}>
+                        {link.name}
+                      </div>
+                      <ul
+                        tabIndex={0}
+                        className='dropdown-content menu bg-base-100 z-[1] w-52 shadow p-0 rounded-none'>
+                        {isLoading && <li>Loading...</li>}
+                        {error && <li>Error: {error}</li>}
+                        {data &&
+                          data.map((category, index) => {
+                            const categoryHref = `/events/${category.slug}`;
+                            return (
+                              <li key={index} className='h-full'>
+                                <Link
+                                  href={categoryHref || '/events'}
+                                  className={`rounded-none px-2 w-full ${
+                                    pathname.startsWith(categoryHref)
+                                      ? 'text-primary font-bold'
+                                      : 'font-normal hover:border-b-4 hover:border-primary'
+                                  }`}>
+                                  {category.category}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                      </ul>
+                    </li>
+                  );
+                }
 
-        <div className='flex-none hidden sm:flex'>
-          <ul className='menu menu-horizontal px-1'>
-            {navLinks.map((link) => {
-              const isActive = pathname.startsWith(link.href);
-
-              if (link.isDropdown) {
-                // Render the dropdown for 'Events'
                 return (
-                  <li key={link.name} className='dropdown dropdown-hover'>
+                  <li key={index} className='h-full'>
                     <div
-                      tabIndex={0}
-                      className={`${isActive ? 'text-primary font-bold' : 'font-normal'}`}>
-                      {link.name}
+                      className={`rounded-none h-16 flex ${
+                        isActive
+                          ? 'text-primary font-bold border-b-4 border-primary'
+                          : 'font-normal hover:border-b-4 hover:border-primary'
+                      }`}>
+                      <Link href={link.href} className='self-center'>
+                        {link.name}
+                      </Link>
                     </div>
-                    <ul
-                      tabIndex={0}
-                      className='dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow'>
+                  </li>
+                );
+              })}
+              <Link
+                href={'/kontakt'}
+                className='btn btn-primary h-full rounded-l-none rounded-r-md text-white'>
+                Gratis prøveperiode
+              </Link>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className='drawer-side'>
+        <label htmlFor='my-drawer-3' aria-label='close sidebar' className='drawer-overlay'></label>
+        <ul className='menu bg-base-200 min-h-full min-w-52 sm:w-96 justify-center'>
+          <Image
+            src='/assets/image/logo-black.png'
+            alt='Logo'
+            className='text-black mb-10'
+            width={150}
+            height={200}
+          />
+          {navLinks.map((link, index) => {
+            const isActive = pathname.startsWith(link.href);
+
+            if (link.isDropdown) {
+              return (
+                <li key={index}>
+                  <details>
+                    <summary className={`${isActive ? 'text-primary font-bold' : 'font-normal'}`}>
+                      {link.name}
+                    </summary>
+                    <ul>
                       {isLoading && <li>Loading...</li>}
                       {error && <li>Error: {error}</li>}
                       {data &&
-                        data.map((category) => {
-                          const categoryHref = `/events/${category.slug}`; // Adjust as needed
+                        data.map((category, index) => {
+                          const categoryHref = `/events/${category.slug}`;
                           return (
-                            <li key={category.id}>
+                            <li key={index}>
                               <Link
                                 href={categoryHref}
                                 className={
                                   pathname.startsWith(categoryHref)
                                     ? 'text-primary font-bold'
                                     : 'font-normal'
-                                }>
-                                {category.category} {/* Adjust as needed */}
+                                }
+                                onClick={() => {
+                                  document.getElementById('my-drawer-3').checked = false;
+                                }}>
+                                {category.category}
                               </Link>
                             </li>
                           );
                         })}
                     </ul>
-                  </li>
-                );
-              }
-
-              return (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className={
-                      isActive
-                        ? 'text-primary font-bold border-b-4 rounded-none border-primary'
-                        : 'font-normal'
-                    }>
-                    {link.name}
-                  </Link>
+                  </details>
                 </li>
               );
-            })}
-          </ul>
-        </div>
+            }
 
-        <div className='sm:hidden'>
-          <DrawerMenu />
-        </div>
-      </nav>
-
+            return (
+              <li key={index}>
+                <Link
+                  href={link.href}
+                  className={
+                    isActive
+                      ? 'text-primary font-bold border-b-4 rounded-none border-primary'
+                      : 'font-normal'
+                  }
+                  onClick={() => {
+                    document.getElementById('my-drawer-3').checked = false;
+                  }}>
+                  {link.name}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       <ScrollToTop />
     </header>
   );

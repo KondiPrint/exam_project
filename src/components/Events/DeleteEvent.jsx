@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import useRequestData from '@/app/lib/useRequestData';
 import { FaTrash } from 'react-icons/fa';
 
-export default function JsonDeletePost({ postId }) {
+export default function DeleteEvent({ postId }) {
   const { data, isLoading, error, makeRequest } = useRequestData();
   const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');

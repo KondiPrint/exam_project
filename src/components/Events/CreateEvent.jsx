@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import useRequestData from '@/app/lib/useRequestData';
 import Link from 'next/link';
 
-export default function JsonCreatePost() {
+export default function CreateEvent() {
   const { data, isLoading, error, makeRequest } = useRequestData();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');

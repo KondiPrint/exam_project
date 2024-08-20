@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function JsonGetPostById({ data }) {
+export default function GetEventById({ data }) {
   const router = useRouter();
   return (
     <>
