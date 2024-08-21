@@ -8,7 +8,7 @@ export default function GithubProfile() {
   return (
     <div className='p-2 '>
       <div className='flex flex-col items-center my-10'>
-        <h1 className='text-xl font-bold text-center'>Welcome to your profile</h1>
+        <h1 className='text-xl font-bold text-center'>Velkommen til din profil</h1>
         {session?.user?.name ? <h2 className='text-2xl'>{session.user.name}!</h2> : null}
       </div>
 

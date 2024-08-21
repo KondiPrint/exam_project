@@ -5,9 +5,8 @@ export default function EditEvents() {
   return (
     <>
       <Card>
-        <div>Edit Events</div>
-        <Link href={'/dashboard/archived'}>Archived</Link>
-        <Link href={'/dashboard/editevent'} className='btn'>
+        <h3 className='text-center font-bold text-3xl'>Events</h3>
+        <Link href={'/dashboard/editevent'} className='btn btn-info'>
           Ret Events
         </Link>
       </Card>

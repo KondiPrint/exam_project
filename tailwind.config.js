@@ -149,10 +149,6 @@ module.exports = {
           secondary: '#666666', // gray2
           accent: '#AAAAAA', // gray1
           neutral: '#555555', // gray3
-          info: '#293B5F', // blueGray
-          success: '#6C67F0', // custom color or replace
-          warning: '#9B68F0', // custom color or replace
-          error: '#261C2C', // darkPurple
         },
       },
       {
@@ -162,10 +158,6 @@ module.exports = {
           secondary: '#666666', // gray2
           accent: '#AAAAAA', // gray1
           neutral: '#555555', // gray3
-          info: '#293B5F', // blueGray
-          success: '#6C67F0', // custom color or replace
-          warning: '#9B68F0', // custom color or replace
-          error: '#261C2C', // darkPurple
         },
       },
     ],

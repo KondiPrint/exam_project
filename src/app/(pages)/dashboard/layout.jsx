@@ -1,24 +1,33 @@
 'use client';
+import Header from '@/components/Layout/Header';
 import { useSession } from 'next-auth/react';
 
-export default function DashboardLayout({ children, users, revenue, displayposts, login }) {
+export default function DashboardLayout({ children, users, goals, displayevents, login }) {
   const { data: session, status } = useSession();
 
   /* const isLoggedIn = !!session; */
 
   const isLoggedIn = true;
   return isLoggedIn ? (
-    <section>
-      <div className='flex flex-wrap'>
-        <div className='flex flex-col'>
-          {users}
-          {revenue}
+    <>
+      <section className='bg-grey-bg space-y-10'>
+        <div className='px-4 sm:px-10 lg:px-20 xl:px-32 2xl:px-36'>
+          <Header />
         </div>
-        <div className='flex flex-1'>{displayposts}</div>
-      </div>
-      <div className=''>{children}</div>
-    </section>
+        <div className='flex flex-wrap gap-5 p-4'>
+          {users}
+          {goals}
+          {displayevents}
+        </div>
+        <div>{children}</div>
+      </section>
+    </>
   ) : (
-    <div>{login}</div>
+    <>
+      <section className='px-4 sm:px-10 lg:px-20 xl:px-32 2xl:px-36'>
+        <Header />
+        {login}
+      </section>
+    </>
   );
 }

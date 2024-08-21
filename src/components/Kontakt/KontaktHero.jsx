@@ -125,7 +125,7 @@ export default function KontaktHero({ data, dataInfo }) {
 
           <aside className='col-start-2 col-end-4'>
             {errorMessage && (
-              <div role='alert' className='alert bg-red-400 mb-10'>
+              <div role='alert' className='alert alert-error mb-10'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='stroke-current shrink-0 size-10 text-white'
@@ -221,6 +221,13 @@ export default function KontaktHero({ data, dataInfo }) {
             </form>
           </aside>
         </div>
+        <aside className=''>
+          <iframe
+            src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2207.657758721437!2d10.884859077719407!3d56.404723641589634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464dd5b14f421121%3A0x7de336d6b4d8265c!2sYdesvej%204%2C%208500%20Gren%C3%A5!5e0!3m2!1sen!2sdk!4v1724273481449!5m2!1sen!2sdk'
+            className='border-none w-full aspect-square md:max-h-96'
+            loading='lazy'
+            referrerPolicy='no-referrer-when-downgrade'></iframe>
+        </aside>
       </section>
     </>
   );

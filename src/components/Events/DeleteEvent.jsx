@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import useRequestData from '@/app/lib/useRequestData';
 import { FaTrash } from 'react-icons/fa';
 
-export default function DeleteEvent({ postId }) {
+export default function DeleteEvent({ eventId }) {
   const { data, isLoading, error, makeRequest } = useRequestData();
   const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -21,7 +21,7 @@ export default function DeleteEvent({ postId }) {
     setErrorMessage('');
 
     try {
-      await makeRequest(`http://localhost:5888/events/admin/${postId}`, 'DELETE');
+      await makeRequest(`http://localhost:5888/events/admin/${eventId}`, 'DELETE');
       setMessage('Post deleted successfully.');
     } catch (err) {
       console.error('Error deleting post:', err);
@@ -31,8 +31,8 @@ export default function DeleteEvent({ postId }) {
 
   return (
     <>
-      <button onClick={handleDelete} disabled={isLoading} className='btn btn-small btn-ghost'>
-        {isLoading ? 'Deleting...' : <FaTrash className='text-red-800 size-8' />}
+      <button onClick={handleDelete} disabled={isLoading} className=''>
+        {isLoading ? 'Deleting...' : <FaTrash className='text-error size-8' />}
       </button>
 
       {message && (

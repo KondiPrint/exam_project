@@ -41,22 +41,20 @@ export default function SignUpPage() {
       const data = await res.json();
 
       if (res.ok) {
-        setMessage('Your account has been created.');
+        setMessage('Din konto er blevet oprettet!');
       } else {
         setMessage(data.message);
       }
     } catch (error) {
-      console.error('Error during sign-up:', error);
-      setMessage('An error occurred. Please try again.');
+      console.error('Der opstod en fejl under oprettelsen:', error);
+      setMessage('Der opstod en fejl. Prøv venligst igen');
     }
   };
 
   return (
-    <div className='flex flex-col justify-center items-center animate-fade-in my-10 p-2'>
+    <div className='flex flex-col justify-center items-center animate-fade-in'>
       {message && <p>{message}</p>}
-      <form onSubmit={handleSignUp} className='space-y-5 p-2 mb-10 sm:mb-0 border-2'>
-        <h1 className='text-center text-3xl mb-5'>Create an account</h1>
-
+      <form onSubmit={handleSignUp} className='space-y-5 p-2 mb-10 sm:mb-0'>
         <div className='relative indicator w-full'>
           <input
             type='text'
@@ -71,7 +69,7 @@ export default function SignUpPage() {
           <label
             htmlFor='username'
             className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-base-100 peer-valid:bg-base-100 px-1'>
-            Username:
+            Brugernavn:
           </label>
           <span className='indicator-item indicator-center badge peer-focus:hidden'>Required</span>
         </div>
@@ -94,16 +92,16 @@ export default function SignUpPage() {
           </label>
           <span className='indicator-item indicator-center badge peer-focus:hidden'>Required</span>
         </div>
-        <div className='flex justify-between'>
+        <div className='flex justify-between gap-5'>
           <button type='submit' className='btn btn-success'>
-            Create account
+            Opret konto
           </button>
           <button type='button' onClick={() => router.push('/signin')} className='btn-link'>
-            Already have an account?
+            Har du allerede en konto?
           </button>
         </div>
         <div>
-          <h2>Sign In with a Provider</h2>
+          <h2>Log på med en udgiver</h2>
           {providers &&
             Object.values(providers).map(
               (provider) =>

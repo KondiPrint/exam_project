@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { useSession, signOut } from 'next-auth/react';
-import useRequestData from '@/app/lib/useRequestData';
 import ScrollToTop from './ScrollToTop';
+import useRequestData from '@/app/lib/useRequestData';
+import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useSession, signOut } from 'next-auth/react';
+import { MdOutlineEmail } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import {
   FaInstagram,
@@ -16,7 +17,6 @@ import {
   FaRegBuilding,
   FaRegCalendarAlt,
 } from 'react-icons/fa';
-import { MdOutlineEmail } from 'react-icons/md';
 
 export default function Header() {
   const [isFixed, setIsFixed] = useState(false);

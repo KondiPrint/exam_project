@@ -39,16 +39,16 @@ export default function SignInPage() {
     });
 
     if (result.ok) {
-      setMessage(`Welcome, ${credentials.username}`);
+      setMessage(`Velkommen, ${credentials.username}`);
     } else {
-      setMessage('Invalid username or password.');
+      setMessage('Forkert brugernavn eller password.');
     }
   };
 
   if (status === 'authenticated') {
     return (
-      <div className='flex flex-col gap-5 text-center mt-8'>
-        <div role='alert' className='alert alert-success'>
+      <aside className='flex flex-col gap-5 text-center mt-8'>
+        <div role='alert' className='alert alert-success text-white'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='size-12 shrink-0 stroke-current'
@@ -61,13 +61,15 @@ export default function SignInPage() {
               d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
             />
           </svg>
-          <h1 className='text-3xl'>Welcome, {session.user.name}</h1>
+          <h1 className='text-3xl'>Velkommen, {session.user.name}</h1>
         </div>
 
-        <button onClick={() => router.push('/')} className='btn'>
-          Go to Homepage
+        <button
+          onClick={() => router.push('/')}
+          className='btn btn-primary animate-heartbeat mb-10 text-white'>
+          Tilbage til forsiden
         </button>
-      </div>
+      </aside>
     );
   }
 
@@ -93,10 +95,8 @@ export default function SignInPage() {
         </div>
       )}
 
-      <div className='flex flex-col justify-center items-center animate-fade-in my-auto p-2'>
-        <form onSubmit={handleSignIn} className='space-y-5 p-2 mb-10 sm:mb-0 border-2'>
-          <h2>Sign In with Credentials</h2>
-
+      <div className='flex flex-col justify-center items-center animate-fade-in'>
+        <form onSubmit={handleSignIn} className='space-y-5 p-2 mb-10 sm:mb-0'>
           <div className='relative indicator w-full'>
             <input
               type='text'
@@ -111,7 +111,7 @@ export default function SignInPage() {
             <label
               htmlFor='name'
               className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-base-100 peer-valid:bg-base-100 px-1'>
-              Username:
+              Brugernavn:
             </label>
             <span className='indicator-item indicator-center badge peer-focus:hidden'>
               Required
@@ -140,14 +140,14 @@ export default function SignInPage() {
           </div>
           <div className='flex justify-between'>
             <button type='submit' className='btn btn-success'>
-              Login
+              Log på
             </button>
             <button type='button' onClick={() => router.push('/signup')} className='btn-link'>
-              Create an account
+              Lav en konto
             </button>
           </div>
           <div>
-            <h2>Sign In with a Provider</h2>
+            <h2>Log på med en udgiver</h2>
             {providers &&
               Object.values(providers).map(
                 (provider) =>
