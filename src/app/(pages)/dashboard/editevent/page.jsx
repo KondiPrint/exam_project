@@ -17,7 +17,7 @@ export default function EditEvent() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts/');
+        const response = await fetch('http://localhost:5888/events');
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -60,16 +60,15 @@ export default function EditEvent() {
         </Link>
       </aside>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4'>
-        {sliceData(data).map((post) => (
-          <div key={post.id} className='card bg-base-100 w-full shadow-xl'>
+        {sliceData(data).map((event, index) => (
+          <div key={event._id} className='card bg-base-100 w-full shadow-xl'>
             <div className='card-body'>
-              <h2 className='card-title'>{post.id}</h2>
-              <p>{post.title?.length > 30 ? `${post.title.substring(0, 90)}...` : post.title}</p>
+              <h2 className='card-title'>{event.title}</h2>
 
               <div className='card-actions justify-between'>
-                <DeleteEvent postId={post.id} />
+                <DeleteEvent eventId={event._id} />
                 <button className='btn btn-small btn-ghost'>
-                  <Link href={`/dashboard/editposts/${post.id}`}>
+                  <Link href={`/dashboard/editevent/${event._id}`}>
                     <FaEdit className='text-green-800 size-8' />
                   </Link>
                 </button>

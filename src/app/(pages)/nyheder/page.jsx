@@ -1,7 +1,9 @@
-export default function page_4() {
+import NyhedsDisplay from '@/components/Nyheder/NyhedsDisplay';
+
+export default function Nyheder() {
   return (
     <>
-      <h1>Here is the fourth page!</h1>
+      <NyhedsDisplay />
     </>
   );
 }

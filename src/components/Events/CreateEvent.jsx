@@ -24,7 +24,7 @@ export default function CreateEvent() {
     }
 
     try {
-      await makeRequest('https://jsonplaceholder.typicode.com/posts', 'POST', {
+      await makeRequest('http://localhost:5888/events/admin', 'POST', {
         title,
         body,
         userId: 1,

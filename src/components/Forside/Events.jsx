@@ -1,17 +1,12 @@
 'use client';
 
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination } from 'swiper/modules';
-import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import Slider from '../Gallery/Slider';
-export default function Events({ data, dataTxt }) {
-  const slicedData = data.slice(0, 4);
 
+export default function Events({ data, dataTxt }) {
   return (
     <>
       <section className='mb-20'>

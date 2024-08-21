@@ -21,7 +21,7 @@ export default function DeleteEvent({ postId }) {
     setErrorMessage('');
 
     try {
-      await makeRequest(`https://jsonplaceholder.typicode.com/posts/${postId}`, 'DELETE');
+      await makeRequest(`http://localhost:5888/events/admin/${postId}`, 'DELETE');
       setMessage('Post deleted successfully.');
     } catch (err) {
       console.error('Error deleting post:', err);

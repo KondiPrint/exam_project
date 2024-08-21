@@ -1,14 +1,14 @@
 import Card from '@/components/Styles/Card';
 import Link from 'next/link';
 
-export default function EditPosts() {
+export default function EditEvents() {
   return (
     <>
       <Card>
-        <div>Edit Posts</div>
+        <div>Edit Events</div>
         <Link href={'/dashboard/archived'}>Archived</Link>
-        <Link href={'/dashboard/editposts'} className='btn'>
-          Edit posts
+        <Link href={'/dashboard/editevent'} className='btn'>
+          Ret Events
         </Link>
       </Card>
     </>

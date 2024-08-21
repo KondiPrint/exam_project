@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import useRequestData from '@/app/lib/useRequestData';
 import ScrollToTop from './ScrollToTop';
+import { CgProfile } from 'react-icons/cg';
 import {
   FaInstagram,
   FaPinterest,
@@ -135,7 +136,8 @@ export default function Header() {
           <div className='hidden flex-none lg:block h-full '>
             <ul className='menu menu-horizontal h-16 m-0 p-0'>
               {navLinks.map((link, index) => {
-                const isActive = pathname.startsWith(link.href);
+                const isActive =
+                  link.href === '/' ? pathname === link.href : pathname.startsWith(link.href);
 
                 if (link.isDropdown) {
                   return (
@@ -156,7 +158,7 @@ export default function Header() {
                         {error && <li>Error: {error}</li>}
                         {data &&
                           data.map((category, index) => {
-                            const categoryHref = `/events/${category.slug}`;
+                            const categoryHref = `/events/`;
                             return (
                               <li key={index} className='h-full'>
                                 <Link
@@ -211,7 +213,8 @@ export default function Header() {
             height={200}
           />
           {navLinks.map((link, index) => {
-            const isActive = pathname.startsWith(link.href);
+            const isActive =
+              link.href === '/' ? pathname === link.href : pathname.startsWith(link.href);
 
             if (link.isDropdown) {
               return (
@@ -225,7 +228,7 @@ export default function Header() {
                       {error && <li>Error: {error}</li>}
                       {data &&
                         data.map((category, index) => {
-                          const categoryHref = `/events/${category.slug}`;
+                          const categoryHref = `/events/`;
                           return (
                             <li key={index}>
                               <Link
@@ -266,6 +269,56 @@ export default function Header() {
               </li>
             );
           })}
+          <div className='divider divider-accent'></div>
+          <div>
+            {session ? (
+              <>
+                {session.user.image ? (
+                  <Image
+                    className='w-10 rounded-full mx-auto mb-4'
+                    alt='Beautiful profile picture!'
+                    width={700}
+                    height={700}
+                    src={session.user.image}
+                  />
+                ) : (
+                  <CgProfile className='size-10 mx-auto mb-4' />
+                )}
+                <ul className='space-y-2'>
+                  <li>
+                    <Link href={'/profile'} className='justify-between'>
+                      Profile
+                      <span className='badge'>New</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={'/dashboard'} className='justify-between'>
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => {
+                        if (confirm('Er du sikker på du gerne vil logge ud?')) {
+                          signOut({ callbackUrl: '/' });
+                        }
+                      }}
+                      className='btn btn-sm btn-error mt-5'>
+                      Sign Out
+                    </button>
+                  </li>
+                </ul>
+                <div className='dropdown dropdown-end'>
+                  <div tabIndex={0} role='button' className='btn btn-ghost btn-circle avatar'></div>
+                  <div className='w-10 rounded-full'></div>
+                </div>
+              </>
+            ) : (
+              <Link href={'/signin'} className='btn btn-lg flex justify-center'>
+                Sign in
+              </Link>
+            )}
+          </div>
         </ul>
       </div>
       <ScrollToTop />

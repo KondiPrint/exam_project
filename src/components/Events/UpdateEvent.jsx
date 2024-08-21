@@ -29,33 +29,32 @@ export default function UpdateEvent() {
     setErrorMessage('');
 
     if (!title.trim() || !body.trim()) {
-      setErrorMessage('Title and Content must not be empty');
+      setErrorMessage('Titel og indhold må ikke være tomme!');
       return;
     }
 
     try {
-      await makeRequestPUT(`https://jsonplaceholder.typicode.com/posts/${id}`, 'PUT', {
+      await makeRequestPUT(`http://localhost:5888/events/admin/${id}`, 'PUT', {
         title,
         body,
-        userId: 1,
       });
-      setMessage('Post updated successfully');
+      setMessage('Event er rettet uden problem');
     } catch (error) {
-      console.error('Error updating post:', error);
-      setErrorMessage('Failed to update the post.');
+      console.error('Fejl i rettelse af event:', error);
+      setErrorMessage('Kunne ikke rette event.');
     }
   };
 
   useEffect(() => {
     if (id) {
-      makeRequest(`https://jsonplaceholder.typicode.com/posts/${id}`, 'GET');
+      makeRequest(`http://localhost:5888/events/${id}`, 'GET');
     }
   }, [id]);
 
   useEffect(() => {
     if (data) {
       setTitle(data.title);
-      setBody(data.body);
+      setBody(data.content);
     }
   }, [data]);
 
@@ -83,7 +82,9 @@ export default function UpdateEvent() {
           </div>
         )}
         {message && (
-          <div role='alert' className='alert alert-success mb-10'>
+          <div
+            role='alert'
+            className='alert bg-green-800 text-white justify-center flex w-fit mx-auto mb-10'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='stroke-current shrink-0 size-10'
@@ -100,18 +101,20 @@ export default function UpdateEvent() {
           </div>
         )}
         <div className='px-4 space-y-5'>
-          {/* Only show the card if there's a success message */}
-          {dataPUT && !errorMessage && !errorPUT && (
+          {/* Only show the card if there's a success message or if data is loaded */}
+          {(dataPUT || data) && !errorMessage && (
             <div className='card bg-base-100 w-fit shadow-xl'>
               <div className='card-body'>
-                <h2 className='card-title'>{dataPUT.id}</h2>
-                <h3>{dataPUT.title}</h3>
-                <p>{dataPUT.body}</p>
+                <h2 className='card-title'>{dataPUT?.title || data.title}</h2>
+                <p>{dataPUT?.body || data.content}</p>
               </div>
             </div>
           )}
 
-          <form className='form-control space-y-5 mb-10 sm:mb-0' onSubmit={handleUpdate} noValidate>
+          <form
+            className='form-control space-y-5 mb-10 sm:mb-0 py-10'
+            onSubmit={handleUpdate}
+            noValidate>
             <div className='relative indicator w-full'>
               <input
                 type='text'
@@ -152,13 +155,15 @@ export default function UpdateEvent() {
                 type='submit'
                 disabled={isLoadingPUT || isLoading}
                 className='text-base text-base-100 btn btn-primary w-full md:w-auto md:justify-start hover:animate-heartbeat'>
-                {isLoadingPUT ? 'Updating...' : 'Update Post'}
+                {isLoadingPUT ? 'Retter event...' : 'Event rettet'}
               </button>
             </div>
           </form>
 
-          <Link href={'/dashboard/editposts'} className='btn btn-warning hover:animate-heartbeat'>
-            Go back
+          <Link
+            href={'/dashboard/editevent'}
+            className='btn btn-warning hover:animate-heartbeat text-white'>
+            Tilbage
           </Link>
         </div>
       </section>

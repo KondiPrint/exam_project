@@ -77,7 +77,7 @@ export default function Footer() {
             <div className='footer border-b-[1px] border-secondary border-opacity-25 auto-cols-fr'>
               {data && (
                 <aside className='space-y-5 text-accent'>
-                  <div className='size-1/3'>
+                  <div className='size-1/3 md:size-2/3'>
                     <Image
                       src={'/assets/image/logo.png'}
                       width={400}
@@ -92,16 +92,18 @@ export default function Footer() {
                       <div className='bg-slate-800 p-2 rounded-full'>
                         <FaHouseChimney className='text-primary' />
                       </div>
-                      <p>Klubhuset:</p>
-                      <address className='not-italic text-xs sm:text-base'>
-                        {data.address}, {data.zipcity}
-                      </address>
+                      <div>
+                        <p className='text-xs'>Klubhuset:</p>
+                        <address className='not-italic text-xs'>
+                          {data.address}, {data.zipcity}
+                        </address>
+                      </div>
                     </div>
                     <div className='flex gap-1 items-center'>
                       <div className='bg-slate-800 p-2 rounded-full'>
                         <IoIosMail className='text-primary' />
                       </div>
-                      <p>{data.email}</p>
+                      <p className='text-xs'>{data.email}</p>
                     </div>
                   </div>
                 </aside>
