@@ -8,19 +8,16 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      // if the user scrolls down, show the button
       window.scrollY > 500 ? setIsVisible(true) : setIsVisible(false);
     };
-    // listen for scroll events
+
     window.addEventListener('scroll', toggleVisibility);
 
-    // clear the listener on component unmount
     return () => {
       window.removeEventListener('scroll', toggleVisibility);
     };
   }, []);
 
-  // handles the animation when scrolling to the top
   const scrollToTop = () => {
     isVisible &&
       window.scrollTo({
@@ -31,7 +28,7 @@ export default function ScrollToTop() {
 
   return (
     <button
-      className={`fixed hover:brightness-200 bottom-5 right-5 btn outline-none transition-all duration-500 z-50 ${
+      className={`fixed hover:bg-slate-700 border-none hover:text-white bottom-5 right-5 btn outline-none transition-all duration-500 z-50 ${
         isVisible ? 'block' : 'hidden'
       }`}
       onClick={scrollToTop}>

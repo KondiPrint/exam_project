@@ -12,7 +12,6 @@ export default function NyhedsDisplay() {
   const [amountPerSite, setAmountPerSite] = useState(2);
   const [currentSite, setCurrentSite] = useState(0);
   const [searchKey, setSearchKey] = useState('Bicycle');
-  const [langKey, setLangKey] = useState('en,da');
   const [searchTerm, setSearchTerm] = useState('');
 
   const { data, isLoading, error, makeRequest } = useRequestData();
@@ -26,22 +25,20 @@ export default function NyhedsDisplay() {
 
   useEffect(() => {
     makeRequest(
-      `https://newsdata.io/api/1/news?apikey=pub_51426a129428b6f8fc4477f75b3626ec04cab&q=${searchKey}&language=${langKey}`
+      `https://newsdata.io/api/1/news?apikey=pub_51426a129428b6f8fc4477f75b3626ec04cab&q=${searchKey}&language=en,da`
     );
-  }, [langKey]);
+  }, []);
 
-  // * Håndter KeyDown (indtastning) i inputfeltet - hvis Enter = start søgning
   const handleSearchKeyDown = (e) => {
     if (e.key === 'Enter' || e.code === 'Enter') {
       handleSearch();
     }
   };
 
-  // * Søgning i API'en
   const handleSearch = (e) => {
     e.preventDefault();
     makeRequest(
-      `https://newsdata.io/api/1/news?apikey=pub_51426a129428b6f8fc4477f75b3626ec04cab&q=${searchKey}&language=${langKey}`
+      `https://newsdata.io/api/1/news?apikey=pub_51426a129428b6f8fc4477f75b3626ec04cab&q=${searchKey}&language=en,da`
     );
   };
   const truncate = (input) => (input?.length > 100 ? `${input.substring(0, 90)}...` : input);

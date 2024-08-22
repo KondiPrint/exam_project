@@ -40,6 +40,7 @@ export default function Header() {
     makeRequestInfo('http://localhost:5888/contactinformation');
   }, []);
 
+  /* https://stackoverflow.com/questions/65526496/how-to-listen-to-screen-position-with-next-js */
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 500) {
@@ -84,25 +85,35 @@ export default function Header() {
               </li>
             </ul>
             <ul className='flex gap-2'>
-              <li>
-                <FaInstagram />
+              <li className='hover:text-primary'>
+                <Link href={'https://www.instagram.dk'} target='_blank'>
+                  <FaInstagram />
+                </Link>
               </li>
-              <li>
-                <FaPinterest />
+              <li className='hover:text-primary'>
+                <Link href={'https://www.pinterest.com/w'} target='_blank'>
+                  <FaPinterest />
+                </Link>
               </li>
-              <li>
-                <FaTwitter />
+              <li className='hover:text-primary' target='_blank'>
+                <Link href={'https://x.com'}>
+                  <FaTwitter />
+                </Link>
               </li>
-              <li>
-                <FaFacebook />
+              <li className='hover:text-primary'>
+                <Link href={'https://www.facebook.dk'} target='_blank'>
+                  <FaFacebook />
+                </Link>
               </li>
             </ul>
           </div>
         )}
-        {/* Navbar */}
-        <div
-          className={`navbar bg-white mx-auto p-0 mt-2 rounded-md shadow-lg ${
-            isFixed ? 'fixed top-0 left-1/2 w-11/12 transform -translate-x-1/2 animate-fade-in' : ''
+
+        <nav
+          className={`navbar bg-white mx-auto p-0 mt-2 rounded-md shadow-lg  ${
+            isFixed
+              ? 'fixed top-0 left-1/2 w-[calc(100%-2rem)] sm:w-[calc(100%-5rem)] lg:w-[calc(100%-10rem)] xl:w-[calc(100%-16rem)] 2xl:w-[calc(100%-18rem)] transform -translate-x-1/2 animate-fade-in'
+              : ''
           }`}>
           <div className='mx-2 flex-1 px-4'>
             <Link href={'/'}>
@@ -153,7 +164,7 @@ export default function Header() {
                       </div>
                       <ul
                         tabIndex={0}
-                        className='dropdown-content menu bg-base-100 z-[1] w-52 shadow p-0 rounded-none'>
+                        className='dropdown-content menu bg-white z-[1] w-52 shadow p-0 rounded-none'>
                         {isLoading && <li>Loading...</li>}
                         {error && <li>Error: {error}</li>}
                         {data &&
@@ -195,18 +206,18 @@ export default function Header() {
               })}
               <Link
                 href={'/kontakt'}
-                className='btn btn-primary h-full rounded-l-none rounded-r-md text-white'>
+                className='btn btn-primary h-full rounded-l-none rounded-r-md border-none text-white ml-5 hover:text-primary  hover:bg-red-100 hover:opacity-90'>
                 Gratis prøveperiode
               </Link>
             </ul>
           </div>
-        </div>
+        </nav>
       </div>
-      <div className='drawer-side'>
+      <nav className='drawer-side'>
         <label htmlFor='my-drawer-3' aria-label='close sidebar' className='drawer-overlay'></label>
-        <ul className='menu bg-base-200 min-h-full min-w-52 sm:w-96 justify-center'>
+        <ul className='menu bg-darkPurple text-white min-h-full min-w-52 sm:w-96 justify-center'>
           <Image
-            src='/assets/image/logo-black.png'
+            src='/assets/image/logo.png'
             alt='Logo'
             className='text-black mb-10'
             width={150}
@@ -320,7 +331,7 @@ export default function Header() {
             )}
           </div>
         </ul>
-      </div>
+      </nav>
       <ScrollToTop />
     </header>
   );

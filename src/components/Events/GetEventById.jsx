@@ -1,27 +1,21 @@
-'use client';
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function GetEventById({ data }) {
-  const router = useRouter();
+  const bodyContent = data.content;
   return (
     <>
-      <h2>Post {data.id}</h2>
-      <div className='p-2'>
+      <article className='p-2'>
         {data && (
-          <div className='card bg-base-100 w-fit shadow-xl'>
-            <div className='card-body'>
-              <h2 className='card-title'>{data.title}</h2>
-              <p>{data.body}</p>
-              <div className='card-actions justify-end'>
-                <button onClick={router.back} className='btn btn-primary'>
-                  Go back
-                </button>
-              </div>
-            </div>
-          </div>
+          <div
+            dangerouslySetInnerHTML={{ __html: bodyContent }}
+            className='pb-20 pt-10 space-y-5 leading-7 text-secondary [&>ul]:bg-grey-bg [&>ul]:p-4 sm:[&>ul]:px-10 [&>ul]:text-center [&>ul]:font-bold [&>ul]:rounded-md [&>ul]:text-primary [&>ul]:text-lg [&>ul]:w-fit [&>ul]:mx-auto [&>ol]:bg-grey-bg [&>ol]:p-4 sm:[&>ol]:px-10 [&>ol]:text-center [&>ol]:font-bold [&>ol]:rounded-md [&>ol]:text-primary [&>ol]:text-lg [&>ol]:w-fit [&>ol]:mx-auto 2xl:[&>p]:px-32 [&>table]:mx-auto [&>table]:border-spacing-4 [&>table]:border-2 [&>table>tbody>tr>td]:border-2 [&>table>tbody>tr>td]:px-4'
+          />
         )}
-      </div>
+        <Link className='btn btn-primary text-white' href={'/events'}>
+          Tilbage til events
+        </Link>
+      </article>
     </>
   );
 }

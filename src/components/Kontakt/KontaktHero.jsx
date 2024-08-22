@@ -36,8 +36,16 @@ export default function KontaktHero({ data, dataInfo }) {
     setMessage('');
     setErrorMessage('');
 
+    /* Validering af formen, så du skal udfylde alle felter */
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       setErrorMessage('Navn, Email, og Besked skal udfyldes');
+      return;
+    }
+
+    /* Sikrer mig at email felten er en email. https://emailregex.com/ */
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email)) {
+      setErrorMessage('Indtast en gyldig emailadresse.');
       return;
     }
 
@@ -63,11 +71,11 @@ export default function KontaktHero({ data, dataInfo }) {
   };
   return (
     <>
-      <section className=' '>
-        <div className='bg-blue-bg h-[32rem] px-4 sm:px-10 lg:px-20 xl:px-32 2xl:px-36'>
+      <section className=''>
+        <div className='bg-blue-bg h-[32rem] px-4 sm:px-10 lg:px-20 xl:px-32 2xl:px-36 '>
           <div className=''>
             <Header />
-            <div className='hero text-white pt-20'>
+            <div className='hero text-white pt-20 animate-fade-in-up duration-1000'>
               <div className='hero-content text-center'>
                 <div className='max-w-md'>
                   <p className='py-6'>{data.suptitle}</p>
@@ -77,7 +85,7 @@ export default function KontaktHero({ data, dataInfo }) {
             </div>
           </div>
         </div>
-        <div className='px-4 sm:px-10 lg:px-20 xl:px-32 2xl:px-36 -mt-36 mb-10 md:-mt-24'>
+        <div className='px-4 sm:px-10 lg:px-20 xl:px-32 2xl:px-36 -mt-36 mb-10 md:-mt-24 animate-fade-in-up duration-1000'>
           <Image
             src={`http://localhost:5888/images/hero/${data.image}`}
             height={800}
@@ -142,7 +150,7 @@ export default function KontaktHero({ data, dataInfo }) {
               </div>
             )}
             {message && (
-              <div role='alert' className='alert alert-success mb-10'>
+              <div role='alert' className='alert alert-success mb-10 text-white'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='stroke-current shrink-0 size-10'
@@ -158,7 +166,7 @@ export default function KontaktHero({ data, dataInfo }) {
                 <span>{message}</span>
               </div>
             )}
-            <form onSubmit={handleSubmit} noValidate className='space-y-2'>
+            <form onSubmit={handleSubmit} noValidate className='space-y-3'>
               <label className='form-control w-full'>
                 <div className='label'>
                   <span className='label-text text-secondary'>Navn</span>
@@ -169,7 +177,7 @@ export default function KontaktHero({ data, dataInfo }) {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder='Dit navn...'
-                  className='input input-bordered w-full'
+                  className='input input-bordered w-full focus:outline-4 focus:outline-blue-200 focus:border-none rounded-md'
                   required
                 />
               </label>
@@ -183,7 +191,7 @@ export default function KontaktHero({ data, dataInfo }) {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder='Din email...'
-                  className='input input-bordered w-full'
+                  className='input input-bordered w-full focus:outline-4 focus:outline-blue-200 focus:border-none rounded-md'
                   required
                 />
               </label>
@@ -197,7 +205,7 @@ export default function KontaktHero({ data, dataInfo }) {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder='Dit telefonnummer...'
-                  className='input input-bordered w-full'
+                  className='input input-bordered w-full focus:outline-4 focus:outline-blue-200 focus:border-none rounded-md'
                   required
                 />
               </label>
@@ -209,12 +217,15 @@ export default function KontaktHero({ data, dataInfo }) {
                   name='message'
                   value={formData.message}
                   onChange={handleChange}
-                  className='textarea textarea-bordered h-24'
+                  className='textarea textarea-bordered h-24 focus:outline-4 focus:outline-blue-200 focus:border-none rounded-md'
                   placeholder='Din besked...'
                   required></textarea>
               </label>
               <div>
-                <button type='submit' className='btn bg-black text-white' disabled={isLoading}>
+                <button
+                  type='submit'
+                  className='btn bg-darkPurple hover:bg-primary border-none hover:-translate-y-1 text-white rounded-md'
+                  disabled={isLoading}>
                   {isLoading ? 'Sender...' : 'Send besked'}
                 </button>
               </div>

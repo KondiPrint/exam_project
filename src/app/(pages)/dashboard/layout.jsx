@@ -5,9 +5,7 @@ import { useSession } from 'next-auth/react';
 export default function DashboardLayout({ children, users, goals, displayevents, login }) {
   const { data: session, status } = useSession();
 
-  /* const isLoggedIn = !!session; */
-
-  const isLoggedIn = true;
+  const isLoggedIn = true; /* !!session */
   return isLoggedIn ? (
     <>
       <section className='bg-grey-bg space-y-10'>

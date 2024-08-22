@@ -21,15 +21,15 @@ const fetchData = async (apiurl, method = 'GET', bodydata = null, headers = {}, 
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      const errorText = await response.text(); // Grab the error message from the response
-      throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
+      const errorText = await response.text();
+      throw new Error(`#1 fetchData status: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json();
     return { data, error: null };
   } catch (error) {
     console.log(error);
-    return { data: null, error: `An error occurred: ${error.message}` };
+    return { data: null, error: `#2 An error occurred: ${error.message}` };
   }
 };
 

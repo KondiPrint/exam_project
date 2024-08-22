@@ -1,15 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
-// Define the path to the JSON file
 const filePath = path.resolve('./src/app/lib/accounts/users.json');
 
-// Ensure the JSON file exists, if not, create it
 function ensureUsersFile() {
   const dirPath = path.dirname(filePath);
 
   if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true }); // Create directories recursively
+    fs.mkdirSync(dirPath, { recursive: true });
   }
 
   if (!fs.existsSync(filePath)) {
@@ -17,7 +15,6 @@ function ensureUsersFile() {
   }
 }
 
-// Read the JSON file
 function readUsersFile() {
   ensureUsersFile();
   try {
@@ -28,11 +25,10 @@ function readUsersFile() {
     return JSON.parse(fileData);
   } catch (error) {
     console.error('Error reading users file:', error);
-    return { users: [] }; // Return empty array on error
+    return { users: [] };
   }
 }
 
-// Write to the JSON file
 function writeUsersFile(data) {
   try {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
@@ -41,13 +37,11 @@ function writeUsersFile(data) {
   }
 }
 
-// Handle POST requests
 export async function POST(req) {
   try {
     const { username, password } = await req.json();
     const data = readUsersFile();
 
-    // Check if the username already exists
     if (data.users.some((user) => user.username === username)) {
       return new Response(JSON.stringify({ message: 'Username already exists' }), {
         status: 400,
@@ -55,7 +49,6 @@ export async function POST(req) {
       });
     }
 
-    // Add the new user
     data.users.push({ username, password });
     writeUsersFile(data);
 
@@ -72,7 +65,6 @@ export async function POST(req) {
   }
 }
 
-// Allow only POST method
 export function OPTIONS() {
   return new Response(null, { status: 200 });
 }

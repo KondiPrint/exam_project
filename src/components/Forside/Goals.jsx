@@ -4,10 +4,8 @@ import { Suspense } from 'react';
 import Image from 'next/image';
 
 export default function Goals({ data, dataGoals }) {
-  // Reverse the goals array to display them in reverse order
-  const sortedGoals = [...dataGoals].sort((a, b) => a.order - b.order); // Use spread operator to avoid mutating the original array
-
-  // Define the icons array
+  /* [...] laver en kopi af et array, så man ikke laver om på de originale data, her laver jeg et kopi a dataGoals og derefter jeg. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax */
+  const sortedGoals = [...dataGoals].sort((a, b) => a.order - b.order);
   const goalIcons = [FaHandshake, FaCrown, FaMap, FaBiking];
 
   return (
@@ -27,7 +25,7 @@ export default function Goals({ data, dataGoals }) {
               <div className='bg-blue-bg mx-4 -mt-20 p-4 text-center space-y-10 rounded-2xl md:row-span-full md:p-0 md:m-0 md:size-full md:space-y-0 md:grid md:place-content-center md:grid-cols-10 2xl:h-72'>
                 {sortedGoals &&
                   sortedGoals.map((goals, id) => {
-                    const Icons = goalIcons[id % goalIcons.length]; // Get the corresponding icon based on index
+                    const Icons = goalIcons[id % goalIcons.length];
 
                     return (
                       <div
@@ -35,7 +33,7 @@ export default function Goals({ data, dataGoals }) {
                         className='md:flex md:place-content-center md:col-span-2 md:row-span-full'>
                         <div className='space-y-2'>
                           <div className='bg-primary rounded-full mx-auto size-10 flex place-items-center justify-center'>
-                            <Icons className='text-white' /> {/* Render the icon */}
+                            <Icons className='text-white' />
                           </div>
                           <p className='text-white text-4xl font-archivo'>{goals.goalcount}</p>
                           <span className='text-primary text-xs'>{goals.goal}</span>
@@ -75,7 +73,6 @@ export default function Goals({ data, dataGoals }) {
         <dialog id='my_modal_1' className='modal p-2'>
           <div className='modal-box max-w-none sm:size-full p-0'>
             <form method='dialog'>
-              {/* if there is a button in form, it will close the modal */}
               <button className='btn btn-sm rounded-none border-none bg-black text-white absolute right-0 top-0'>
                 X
               </button>

@@ -10,29 +10,27 @@ export default function DeleteEvent({ eventId }) {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleDelete = async () => {
-    // Confirm deletion
-    const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+    const confirmDelete = window.confirm('Er du sikker på du gerne vil slette den her event?');
     if (!confirmDelete) {
       return;
     }
 
-    // Clear previous messages
     setMessage('');
     setErrorMessage('');
 
     try {
       await makeRequest(`http://localhost:5888/events/admin/${eventId}`, 'DELETE');
-      setMessage('Post deleted successfully.');
+      setMessage('Eventen er blevet slettet.');
     } catch (err) {
-      console.error('Error deleting post:', err);
-      setErrorMessage('Failed to delete the post.');
+      console.error('Fejl ved sletning af event:', err);
+      setErrorMessage('Kunne ikke slette eventen.');
     }
   };
 
   return (
     <>
       <button onClick={handleDelete} disabled={isLoading} className=''>
-        {isLoading ? 'Deleting...' : <FaTrash className='text-error size-8' />}
+        {isLoading ? 'Sletter...' : <FaTrash className='text-error size-8' />}
       </button>
 
       {message && (

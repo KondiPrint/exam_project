@@ -11,7 +11,7 @@ export default function AmountPerSite({
       {options.map((o, index) => (
         <React.Fragment key={o}>
           <button
-            className={`link ${
+            className={`relative ${
               amountPerSite === o ? 'text-primary font-bold' : 'text-base-content'
             }`}
             onClick={() => {

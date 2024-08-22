@@ -24,7 +24,6 @@ export default function UpdateEvent() {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    // Clear previous messages and data
     setMessage('');
     setErrorMessage('');
 
@@ -84,7 +83,7 @@ export default function UpdateEvent() {
         {message && (
           <div
             role='alert'
-            className='alert bg-green-800 text-white justify-center flex w-fit mx-auto mb-10'>
+            className='alert alert-success text-white justify-center flex w-fit mx-auto mb-10'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='stroke-current shrink-0 size-10'
@@ -101,7 +100,6 @@ export default function UpdateEvent() {
           </div>
         )}
         <div className='px-4 space-y-5'>
-          {/* Only show the card if there's a success message or if data is loaded */}
           {(dataPUT || data) && !errorMessage && (
             <div className='card bg-base-100 w-fit shadow-xl'>
               <div className='card-body'>

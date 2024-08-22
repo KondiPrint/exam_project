@@ -13,7 +13,6 @@ export default function Footer() {
   const [lightboxImage, setLightboxImage] = useState(null);
   const [sortedEvents, setSortedEvents] = useState([]);
 
-  // Fetch data
   const { data, isLoading, error, makeRequest } = useRequestData();
   const {
     data: dataEvents,
@@ -38,31 +37,29 @@ export default function Footer() {
     makeRequestEvents('http://localhost:5888/events');
   }, []);
 
-  // Select 6 random images from the dataEvents array
   useEffect(() => {
     if (dataEvents && dataEvents.length > 0) {
-      const shuffled = [...dataEvents].sort(() => 0.5 - Math.random()); // Shuffle the array
-      const selectedImages = shuffled.slice(0, 6); // Get the first 6 elements
+      const shuffled = [...dataEvents].sort(() => 0.5 - Math.random());
+      const selectedImages = shuffled.slice(0, 6);
       setRandomImages(
         selectedImages.map((event) => `http://localhost:5888/images/event/${event.image}`)
-      ); // Construct full image URLs
+      );
     }
   }, [dataEvents]);
 
-  // Sort and filter events to show the closest 4 upcoming events
   useEffect(() => {
     if (dataEvents && dataEvents.length > 0) {
       const now = new Date();
       const upcomingEvents = dataEvents
-        .filter((event) => parseISO(event.eventdate) > now) // Filter out past events
-        .sort((a, b) => parseISO(a.eventdate) - parseISO(b.eventdate)) // Sort by event date
-        .slice(0, 4); // Select the top 4 upcoming events
+        .filter((event) => parseISO(event.eventdate) > now)
+        .sort((a, b) => parseISO(a.eventdate) - parseISO(b.eventdate))
+        .slice(0, 4);
       setSortedEvents(upcomingEvents);
     }
   }, [dataEvents]);
 
   const handleImageClick = (image) => {
-    setLightboxImage(image); // Set the full image URL
+    setLightboxImage(image);
   };
 
   const closeLightbox = () => {
@@ -74,7 +71,7 @@ export default function Footer() {
       <div className='bg-topo-pattern '>
         <div className='px-4 py-20 sm:px-10 lg:px-20 xl:px-32 2xl:px-36'>
           <footer className='text-accent px-4'>
-            <div className='footer border-b-[1px] border-secondary border-opacity-25 auto-cols-fr'>
+            <div className='footer border-b-[1px] border-secondary border-opacity-25 auto-cols-fr pb-10'>
               {data && (
                 <aside className='space-y-5 text-accent'>
                   <div className='size-1/3 md:size-2/3'>
@@ -116,8 +113,12 @@ export default function Footer() {
                 <ul className='flex-col flex gap-3 mt-5 font-semibold space-y-3'>
                   {sortedEvents.map((event, index) => (
                     <li key={index} className='flex items-center gap-2'>
-                      <FaChevronRight className='size-3 text-primary' />
-                      {event.title}
+                      <Link
+                        href={'/events'}
+                        className='group flex items-center gap-2 hover:text-primary'>
+                        <FaChevronRight className='size-3 text-primary group-hover:translate-x-1 transition-all' />
+                        {event.title}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -129,8 +130,10 @@ export default function Footer() {
                 <ul className='flex-col flex gap-3 mt-5 font-semibold'>
                   {navLinks.map((links, index) => (
                     <li key={index} className='flex items-center gap-2'>
-                      <FaChevronRight className='size-3 text-primary' />
-                      <Link href={links.href} className='link link-hover'>
+                      <Link
+                        href={links.href}
+                        className='group flex items-center gap-2 hover:text-primary'>
+                        <FaChevronRight className='size-3 text-primary group-hover:translate-x-1 transition-all' />
                         {links.name}
                       </Link>
                     </li>
@@ -144,15 +147,21 @@ export default function Footer() {
                 </h6>
                 <aside className='grid grid-cols-3 w-full gap-2 pt-5 mb-14'>
                   {randomImages.map((image, index) => (
-                    <Image
+                    <figure
                       key={index}
-                      src={image}
-                      width={800}
-                      height={800}
-                      alt={`Event ${index}`}
-                      className='rounded-md size-full cursor-pointer aspect-video'
-                      onClick={() => handleImageClick(image)} // Pass the full image URL
-                    />
+                      onClick={() => handleImageClick(image)}
+                      className='flex flex-col justify-center items-center overflow-hidden rounded-md relative group cursor-pointer'>
+                      <Image
+                        src={image}
+                        width={800}
+                        height={800}
+                        alt={`Event ${index}`}
+                        className='rounded-md size-full aspect-video group-hover:scale-110 group-hover:-rotate-3 transition-all duration-700'
+                      />
+                      <div className='size-full bg-black top-0 right-0 absolute group-hover:bg-opacity-30 group-hover:opacity-100 opacity-0 m-0 justify-center items-center flex'>
+                        <div className='text-6xl text-white'></div>
+                      </div>
+                    </figure>
                   ))}
                 </aside>
               </nav>
@@ -165,7 +174,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Render Lightbox if an image is clicked */}
       {lightboxImage && <Lightbox image={lightboxImage} onClose={closeLightbox} />}
     </div>
   );

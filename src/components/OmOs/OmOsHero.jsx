@@ -15,7 +15,9 @@ export default function OmOsHero({ data }) {
             </div>
             <div className='space-y-8 pb-12'>
               <p className='text-secondary font-semibold text-sm'>{data.content}</p>
-              <Link href={'/kontakt'} className='btn text-white bg-black rounded-md border-none'>
+              <Link
+                href={'/kontakt'}
+                className='btn bg-darkPurple hover:bg-primary border-none hover:-translate-y-1 text-white rounded-md'>
                 {data.buttontext}!
               </Link>
             </div>

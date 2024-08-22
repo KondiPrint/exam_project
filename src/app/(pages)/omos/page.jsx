@@ -13,22 +13,18 @@ export default async function OmOs() {
   const { data: dataGo, error: errorGo } = await fetchData('http://localhost:5888/goals');
 
   if (error) {
-    // Handle the error appropriately
     return <div>Error: {error}</div>;
   }
 
   if (errorTesti) {
-    // Handle the error appropriately
-    return <div>Error: {errorTesti}</div>;
+    return <div>Errortesti: {errorTesti}</div>;
   }
 
   if (errorCom) {
-    // Handle the error appropriately
-    return <div>Error: {errorCom}</div>;
+    return <div>ErrorCom: {errorCom}</div>;
   }
   if (errorGo) {
-    // Handle the error appropriately
-    return <div>Error: {errorGo}</div>;
+    return <div>ErrorGo: {errorGo}</div>;
   }
 
   return (

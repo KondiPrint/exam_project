@@ -21,7 +21,7 @@ export default function ForsideHero({ data }) {
             <p className='my-6 text-secondary font-archivo'>{data?.content}</p>
             <Link
               href={data?.buttonlink}
-              className='btn rounded-md font-archivo font-medium btn-primary text-white px-6 hover:bg-white hover:text-primary hover:-translate-y-1'>
+              className='btn rounded-md font-archivo font-medium btn-primary text-white px-6 border-none hover:bg-white hover:text-primary hover:-translate-y-1'>
               {data?.buttontext}
             </Link>
           </div>
@@ -49,10 +49,9 @@ export default function ForsideHero({ data }) {
         </div>
       </section>
 
-      <dialog id='my_modal_1' className='modal p-2'>
-        <div className='modal-box max-w-none sm:size-full p-0'>
+      <dialog id='my_modal_1' className='modal p-2 bg-black bg-opacity-80'>
+        <div className='modal-box max-w-none sm:size-9/12 p-0'>
           <form method='dialog'>
-            {/* if there is a button in form, it will close the modal */}
             <button className='btn btn-sm rounded-none border-none bg-black text-white absolute right-0 top-0'>
               X
             </button>

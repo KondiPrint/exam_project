@@ -7,7 +7,6 @@ import WhoAreWe from '@/components/Forside/WhoAreWe';
 import Events from '@/components/Forside/Events';
 
 export default async function Forside() {
-  // Fetch both data sets concurrently
   const [
     heroResult,
     goalsTxtResult,
@@ -19,14 +18,18 @@ export default async function Forside() {
     testiResult,
     eventResult,
   ] = await Promise.all([
-    // Hero-section
+    /* Hero-section */
     fetchData('http://localhost:5888/heroes/653d440a5d213e546d6dd303'),
-    // Goals-section
+
+    /* Goals-section */
     fetchData('http://localhost:5888/heroes/653d46049a5c1b967a06948a'),
-    // Events-section
+
+    /* Events-section */
     fetchData('http://localhost:5888/heroes/653d5dd5eb8bede598fd91a9'),
-    // Testimonial-section
+
+    /*  Testimonial-section */
     fetchData('http://localhost:5888/heroes/653fe16829138596366a3a82'),
+
     fetchData('http://localhost:5888/goals'),
     fetchData('http://localhost:5888/interest'),
     fetchData('http://localhost:5888/community'),
@@ -34,7 +37,6 @@ export default async function Forside() {
     fetchData('http://localhost:5888/events'),
   ]);
 
-  // Destructure the results
   const { data: heroData, error: heroError } = heroResult;
   const { data: goalsTxtData, error: goalsTxtError } = goalsTxtResult;
   const { data: eventsTxtData, error: eventsTxtError } = eventsTxtResult;
@@ -45,7 +47,6 @@ export default async function Forside() {
   const { data: testiData, error: testiError } = testiResult;
   const { data: eventData, error: eventError } = eventResult;
 
-  // Handle errors appropriately
   if (
     heroError ||
     goalsTxtError ||

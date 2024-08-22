@@ -1,4 +1,3 @@
-import CountdownTimer from '@/components/Countdown';
 import Card from '@/components/Styles/Card';
 
 export default function Goals() {

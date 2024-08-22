@@ -90,7 +90,7 @@ export default function CreateEvent() {
 
   return (
     <div>
-      <h1 className='text-center text-3xl py-10'>Create Event</h1>
+      <h1 className='text-center text-3xl py-10'>Opret Event</h1>
       <div className='px-4 space-y-5 sm:px-10 lg:px-20 xl:px-32 2xl:px-36'>
         {errorMessage && (
           <div role='alert' className='alert alert-error text-white mb-10'>
@@ -148,12 +148,9 @@ export default function CreateEvent() {
             />
             <label
               htmlFor='title'
-              className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-base-100 peer-valid:bg-base-100 px-1'>
+              className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-grey-bg peer-valid:bg-grey-bg px-1 rounded-br-xl'>
               Titel:
             </label>
-            <span className='indicator-item indicator-center badge peer-focus:hidden'>
-              Required
-            </span>
           </div>
 
           <div>
@@ -184,10 +181,9 @@ export default function CreateEvent() {
             className='textarea textarea-bordered peer focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary valid:border-success focus:valid:border-success focus:valid:ring-success w-full'></textarea>
           <label
             htmlFor='content'
-            className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-base-100 peer-valid:bg-base-100 px-1'>
+            className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-grey-bg peer-valid:bg-grey-bg px-1 rounded-br-xl'>
             Indhold:
           </label>
-          <span className='indicator-item indicator-center badge peer-focus:hidden'>Required</span>
         </div>
 
         <div className='flex flex-wrap sm:flex-nowrap gap-5'>
@@ -207,9 +203,6 @@ export default function CreateEvent() {
               className='absolute -top-3 -left-1 bg-grey-bg peer-valid:bg-grey-bg px-1 rounded-br-xl'>
               Event Date:
             </label>
-            <span className='indicator-item indicator-center badge peer-focus:hidden'>
-              Required
-            </span>
           </div>
 
           <div className='relative indicator w-full'>
@@ -227,12 +220,9 @@ export default function CreateEvent() {
             />
             <label
               htmlFor='difficulty'
-              className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-grey-bg peer-valid:bg-grey-bg px-1 rounded-br-xl'>
+              className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-grey-bg peer-valid:bg-grey-bg px-1 rounded-br-xl '>
               Difficulty (1-10):
             </label>
-            <span className='indicator-item indicator-center badge peer-focus:hidden'>
-              Required
-            </span>
           </div>
         </div>
 
@@ -250,12 +240,9 @@ export default function CreateEvent() {
             />
             <label
               htmlFor='destination'
-              className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-base-100 peer-valid:bg-base-100 px-1'>
+              className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-grey-bg peer-valid:bg-grey-bg px-1 rounded-br-xl'>
               Destination:
             </label>
-            <span className='indicator-item indicator-center badge peer-focus:hidden'>
-              Required
-            </span>
           </div>
 
           <div className='relative indicator w-full'>
@@ -271,12 +258,9 @@ export default function CreateEvent() {
             />
             <label
               htmlFor='distance'
-              className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-base-100 peer-valid:bg-base-100 px-1'>
+              className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-grey-bg peer-valid:bg-grey-bg px-1 rounded-br-xl'>
               Distance (in km):
             </label>
-            <span className='indicator-item indicator-center badge peer-focus:hidden'>
-              Required
-            </span>
           </div>
         </div>
 
@@ -293,10 +277,9 @@ export default function CreateEvent() {
           />
           <label
             htmlFor='coordinates'
-            className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-base-100 peer-valid:bg-base-100 px-1'>
+            className='absolute top-3 left-3 transition-all duration-300 peer-focus:-top-3 peer-focus:-left-1 peer-valid:-top-3 peer-valid:-left-1 peer-focus:bg-grey-bg peer-valid:bg-grey-bg px-1 rounded-br-xl'>
             Coordinates:
           </label>
-          <span className='indicator-item indicator-center badge peer-focus:hidden'>Required</span>
         </div>
 
         <div className='relative indicator w-full'>
@@ -311,10 +294,9 @@ export default function CreateEvent() {
           />
           <label
             htmlFor='image'
-            className='absolute -top-3 -left-1 peer-valid:-top-3 peer-valid:-left-1 bg-base-100 peer-valid:bg-base-100 px-1 rounded-br-xl'>
+            className='absolute -top-3 -left-1 bg-grey-bg peer-valid:bg-grey-bg px-1 rounded-br-xl'>
             image:
           </label>
-          <span className='indicator-item indicator-center badge peer-focus:hidden'>Required</span>
         </div>
 
         <button type='submit' className='btn btn-primary hover:animate-heartbeat'>

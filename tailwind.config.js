@@ -11,6 +11,10 @@ module.exports = {
         archivo: ['Archivo', 'sans-serif'],
         lexend: ['Lexend', 'sans-serif'],
       },
+      colors: {
+        blueGray: '#293B5F',
+        darkPurple: '#261C2C',
+      },
       backgroundImage: {
         'grey-bg': "url('/assets/image/bg2.jpg')",
         'blue-bg': "url('/assets/image/bg1.jpg')",
@@ -19,16 +23,14 @@ module.exports = {
       },
       animation: {
         heartbeat: 'heartbeat .6s ease-out',
-        jiggle: 'jiggle 2s ease-in-out',
         'fade-in-left': 'fade-in-left 1s ease-out',
         'fade-in': 'fade-in 0.6s ease-in',
-        typewriter: 'typewriter 2s steps(11) forwards',
-        caret: 'typewriter 2s steps(76) forwards, blink 1s steps(76) infinite 2s',
         'slide-in-right': 'slide-in-right 0.6s ease-out',
         'slide-out-right': 'slide-out-right 1s ease-out infinite',
         'slide-out-left': 'slide-out-left 1s ease-out infinite',
         'zoom-in': 'zoom-in 0.6s ease-out',
         'zoom-out': 'zoom-out 0.3s ease-out',
+        'fade-in-up': 'fade-in-up 0.6s ease-in-out',
       },
       keyframes: {
         heartbeat: {
@@ -44,13 +46,15 @@ module.exports = {
           '90%': { transform: 'scale(1.03)' },
           '100%': { transform: 'scale(1)' },
         },
-        jiggle: {
-          '0%': { transform: 'rotate(-10deg)' },
-          '20%': { transform: 'rotate(10deg)' },
-          '40%': { transform: 'rotate(-10deg)' },
-          '60%': { transform: 'rotate(10deg)' },
-          '80%': { transform: 'rotate(-10deg)' },
-          '100%': { transform: 'rotate(0deg)' },
+        'fade-in-up': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
         },
         'fade-in-left': {
           '0%': {
@@ -68,28 +72,6 @@ module.exports = {
           },
           '100%': {
             opacity: '1',
-          },
-        },
-        typewriter: {
-          to: {
-            left: '100%',
-          },
-        },
-        blink: {
-          '0%': {
-            opacity: '0',
-          },
-          '0.1%': {
-            opacity: '1',
-          },
-          '50%': {
-            opacity: '1',
-          },
-          '50.1%': {
-            opacity: '0',
-          },
-          '100%': {
-            opacity: '0',
           },
         },
         'slide-in-right': {
@@ -145,19 +127,19 @@ module.exports = {
       {
         light: {
           ...require('daisyui/src/theming/themes')['light'],
-          primary: '#D45D79', // pinkishRed
-          secondary: '#666666', // gray2
-          accent: '#AAAAAA', // gray1
-          neutral: '#555555', // gray3
+          primary: '#D45D79',
+          secondary: '#666666',
+          accent: '#AAAAAA',
+          neutral: '#555555',
         },
       },
       {
         dark: {
           ...require('daisyui/src/theming/themes')['dark'],
-          primary: '#D45D79', // pinkishRed
-          secondary: '#666666', // gray2
-          accent: '#AAAAAA', // gray1
-          neutral: '#555555', // gray3
+          primary: '#D45D79',
+          secondary: '#666666',
+          accent: '#AAAAAA',
+          neutral: '#555555',
         },
       },
     ],

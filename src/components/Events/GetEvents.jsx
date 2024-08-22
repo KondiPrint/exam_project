@@ -24,12 +24,10 @@ export default function GetEvents({ data, dataTxt }) {
   useEffect(() => {
     let processedData = [...data];
 
-    // Filter data based on selected category
     if (selectedCategory && selectedCategory !== 'Alle') {
       processedData = processedData.filter((event) => event.category.category === selectedCategory);
     }
 
-    // Filter data based on search term
     if (searchTerm) {
       processedData = processedData.filter((event) =>
         event.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -39,7 +37,6 @@ export default function GetEvents({ data, dataTxt }) {
     setFilteredData(processedData);
   }, [data, searchTerm, selectedCategory]);
 
-  // Function to format the date in Danish format
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('da-DK', {
@@ -49,10 +46,8 @@ export default function GetEvents({ data, dataTxt }) {
     });
   };
 
-  // Get unique categories from the data
+  /* https://stackoverflow.com/questions/69000871/get-unique-category-property-values-from-an-array */
   const uniqueCategories = [...new Set(data.map((event) => event.category.category))];
-
-  const catList = uniqueCategories.sort();
 
   return (
     <>
@@ -63,35 +58,38 @@ export default function GetEvents({ data, dataTxt }) {
             {uniqueCategories.map((category, index) => (
               <button
                 key={index}
-                className={`text-secondary ${
-                  selectedCategory === category ? 'border-b-[1px] border-secondary' : ''
+                className={`text-secondary relative group ${
+                  selectedCategory === category
+                    ? 'border-b-[1px] border-secondary hover:border-opacity-0'
+                    : ''
                 }`}
                 onClick={() => setSelectedCategory(category)}>
                 {category}
+                {/* https://birdeatsbug.com/blog/creating-hover-effects-with-tailwind-css */}
+                <span className='absolute -bottom-0 left-1/2 w-0 h-[1px] bg-secondary group-hover:w-1/2 group-hover:transition-all duration-200'></span>
+                <span className='absolute -bottom-0 right-1/2 w-0 h-[1px] bg-secondary group-hover:w-1/2 group-hover:transition-all duration-200'></span>
               </button>
             ))}
           </div>
           <Search setSearchTerm={setSearchTerm} />
         </div>
 
-        {/* Category Filter */}
-
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10'>
           {filteredData &&
             sliceData(filteredData).map((event, index) => (
-              <Link
-                href={`/events/${event._id}`}
-                key={event._id}
-                className='hover:scale-105 transition-all'>
+              <Link href={`/events/${event._id}`} key={event._id} className='group'>
                 <div className='space-y-2'>
-                  <figure className=''>
+                  <figure className='flex flex-col justify-center items-center overflow-hidden rounded-md relative'>
                     <Image
                       src={`http://localhost:5888/images/event/${event.image}`}
                       width={600}
                       height={600}
                       alt='Test'
-                      className='aspect-video rounded-lg'
+                      className='aspect-video rounded-lg group-hover:scale-125 group-hover:-rotate-3 transition-all duration-1000'
                     />
+                    <div className='size-full bg-indigo-950 top-0 right-0 absolute group-hover:bg-opacity-60 group-hover:opacity-100 opacity-0 m-0 justify-center items-center flex'>
+                      <div className='text-6xl text-white'></div>
+                    </div>
                   </figure>
                   <div className=''>
                     <span className='text-primary text-xs'>
@@ -104,12 +102,14 @@ export default function GetEvents({ data, dataTxt }) {
               </Link>
             ))}
         </div>
-        <PrevNext
-          setCurrentSite={setCurrentSite}
-          currentSite={currentSite}
-          dataLength={filteredData.length}
-          amountPerSite={amountPerSite}
-        />
+        <div className='text-black'>
+          <PrevNext
+            setCurrentSite={setCurrentSite}
+            currentSite={currentSite}
+            dataLength={filteredData.length}
+            amountPerSite={amountPerSite}
+          />
+        </div>
       </section>
     </>
   );

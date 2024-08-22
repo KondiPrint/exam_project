@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Sponsorer({ data, dataCon }) {
+  /* https://stackoverflow.com/questions/62542379/could-someone-explain-the-example-below-regarding-javascripts-concat-and-slic */
   const slicedData = data.slice(0, 1).concat(data.slice(2));
 
   return (

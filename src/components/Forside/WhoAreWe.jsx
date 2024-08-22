@@ -3,15 +3,15 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { FaPinterest, FaFacebookF, FaInstagram, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
-function getRandomIcons() {
-  const icons = [FaPinterest, FaFacebookF, FaInstagram, FaTwitter, FaWhatsapp];
-  const shuffled = icons.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, 3); // Select the first 3 icons
-}
-
 export default function WhoAreWe({ data, dataTxt }) {
   const [randomMembers, setRandomMembers] = useState([]);
   const [randomIcons, setRandomIcons] = useState([]);
+
+  const getRandomIcons = () => {
+    const icons = [FaPinterest, FaFacebookF, FaInstagram, FaTwitter, FaWhatsapp];
+    const shuffledIcon = icons.sort(() => 0.5 - Math.random());
+    return shuffledIcon.slice(0, 3);
+  };
 
   useEffect(() => {
     setRandomIcons(getRandomIcons());
@@ -19,9 +19,8 @@ export default function WhoAreWe({ data, dataTxt }) {
 
   useEffect(() => {
     if (data && data.length > 0) {
-      // Shuffle the array and select 4 random members
-      const shuffled = [...data].sort(() => 0.5 - Math.random());
-      const selectedMembers = shuffled.slice(0, 4);
+      const shuffledMember = [...data].sort(() => 0.5 - Math.random());
+      const selectedMembers = shuffledMember.slice(0, 4);
       setRandomMembers(selectedMembers);
     }
   }, [data]);
@@ -38,7 +37,7 @@ export default function WhoAreWe({ data, dataTxt }) {
             <p className='text-secondary font-semibold text-sm'>{dataTxt.content}</p>
           </div>
 
-          <div className='space-y-10 my-10 md:grid md:grid-cols-4 md:place-items-center md:space-y-0 md:gap-5'>
+          <div className='space-y-20 my-10 md:grid md:grid-cols-4 md:place-items-center md:space-y-0 md:gap-5'>
             {randomMembers.map((member, id) => (
               <figure key={id} className='relative'>
                 <div className='relative'>
@@ -53,8 +52,8 @@ export default function WhoAreWe({ data, dataTxt }) {
                     {randomIcons.map((Icon, index) => (
                       <div
                         key={index}
-                        className='bg-primary rounded-full mx-auto size-6 flex place-items-center justify-center'>
-                        <Icon className='text-white size-3' />
+                        className='bg-primary rounded-full mx-auto size-6 flex place-items-center justify-center hover:bg-white group'>
+                        <Icon className='text-white size-3 group-hover:text-primary' />
                       </div>
                     ))}
                   </div>

@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 
 export default function Search({ setSearchTerm }) {
-  const [localSearchTerm, setLocalSearchTerm] = useState('');
+  const [search, setSearch] = useState('');
 
-  // Handle the search logic
   const handleSearch = () => {
-    setSearchTerm(localSearchTerm);
+    setSearchTerm(search);
   };
 
-  // Handle input change
   const handleInputChange = (e) => {
-    setLocalSearchTerm(e.target.value);
+    setSearch(e.target.value);
   };
 
-  // Handle Enter key press
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleSearch();
@@ -25,7 +22,7 @@ export default function Search({ setSearchTerm }) {
       <div className='relative w-full'>
         <input
           type='text'
-          value={localSearchTerm}
+          value={search}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           placeholder=' '

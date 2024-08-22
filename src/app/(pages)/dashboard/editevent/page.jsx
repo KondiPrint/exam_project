@@ -4,6 +4,11 @@ import fetchData from '@/app/lib/fetchData';
 
 export default async function EditEvent() {
   const { data, error } = await fetchData('http://localhost:5888/events');
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <>
       <section className='bg-blue-bg py-10'>
