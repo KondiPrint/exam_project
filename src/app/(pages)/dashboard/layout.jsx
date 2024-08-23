@@ -12,7 +12,7 @@ export default function DashboardLayout({
 }) {
   const { data: session, status } = useSession();
 
-  const isLoggedIn = true; /* !!session */
+  const isLoggedIn = !!session;
   return isLoggedIn ? (
     <>
       <section className='bg-grey-bg space-y-10'>

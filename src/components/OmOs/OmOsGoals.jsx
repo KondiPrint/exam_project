@@ -15,7 +15,7 @@ export default function OmOsGoals({ data }) {
                   <div className='space-y-2 flex flex-col items-center md:inline-flex'>
                     <div className='indicator'>
                       <div className='rounded-full border-[1px] border-primary mx-auto size-8 flex place-items-center justify-center indicator-item scale-90 -right-3'>
-                        <Icons className='text-primary size-4' /> {/* Render the icon */}
+                        <Icons className='text-primary size-4' />
                       </div>
                       <p className='text-5xl font-bold'>{goals.goalcount}</p>
                     </div>
