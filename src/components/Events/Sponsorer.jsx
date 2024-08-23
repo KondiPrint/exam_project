@@ -52,7 +52,7 @@ export default function Sponsorer({ data, dataCon }) {
             <h2 className='text-3xl font-bold'>{dataCon.suptitle}</h2>
           </div>
           <Link
-            href={'/kontak'}
+            href={'/kontakt'}
             className='btn btn-primary text-white rounded-md hover:bg-white hover:text-primary hover:-translate-y-1'>
             {dataCon.title} nu
           </Link>

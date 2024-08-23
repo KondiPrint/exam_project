@@ -189,17 +189,16 @@ export default function Header() {
                 }
 
                 return (
-                  <li key={index} className='h-full'>
-                    <div
-                      className={`rounded-none h-16 flex ${
+                  <li key={index} className=''>
+                    <Link
+                      href={link.href}
+                      className={`rounded-none h-16 flex items-center ${
                         isActive
                           ? 'text-primary font-bold border-b-4 border-primary'
                           : 'font-normal hover:border-b-4 hover:border-primary'
                       }`}>
-                      <Link href={link.href} className='self-center'>
-                        {link.name}
-                      </Link>
-                    </div>
+                      {link.name}
+                    </Link>
                   </li>
                 );
               })}
