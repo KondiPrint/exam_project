@@ -23,7 +23,6 @@ export default function Header() {
   const pathname = usePathname();
   const { data: session } = useSession();
 
-  // Ensure the hook returns an object with these properties
   const { data, isLoading, error, makeRequest } = useRequestData();
   const {
     data: dataInfo,

@@ -35,7 +35,7 @@ export default function CreateEvent() {
     setMessage('');
     setErrorMessage('');
 
-    // Validering, tjekker om alle felter er udfyldt
+    /* Validering, tjekker om alle felter er udfyldt */
     if (
       !title.trim() ||
       !content.trim() ||
@@ -303,7 +303,9 @@ export default function CreateEvent() {
           Opret Event
         </button>
       </form>
-      <Link href='/events' className='btn btn-info hover:animate-heartbeat mx-10 mb-10'>
+      <Link
+        href='/dashboard/editevent'
+        className='btn btn-info hover:animate-heartbeat mx-10 mb-10'>
         Tilbage til Events
       </Link>
     </div>

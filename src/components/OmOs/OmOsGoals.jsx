@@ -8,7 +8,7 @@ export default function OmOsGoals({ data }) {
         <div className='text-center space-y-10 px-4 sm:px-10 lg:px-20 xl:px-32 2xl:px-36 py-20 md:flex md:justify-evenly md:items-center md:space-y-0'>
           {sortedGoals &&
             sortedGoals.map((goals, id) => {
-              const Icons = goalIcons[id % goalIcons.length]; // Get the corresponding icon based on index
+              const Icons = goalIcons[id % goalIcons.length];
 
               return (
                 <div key={id} className=''>

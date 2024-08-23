@@ -153,7 +153,7 @@ export default function UpdateEvent() {
                 type='submit'
                 disabled={isLoadingPUT || isLoading}
                 className='text-base text-base-100 btn btn-primary w-full md:w-auto md:justify-start hover:animate-heartbeat'>
-                {isLoadingPUT ? 'Retter event...' : 'Event rettet'}
+                Ret event
               </button>
             </div>
           </form>

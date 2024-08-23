@@ -1,7 +1,7 @@
 import Card from '@/components/Styles/Card';
 import Link from 'next/link';
 
-export default function EditEvents() {
+export default function DisplayEvents() {
   return (
     <>
       <Card>

@@ -2,7 +2,14 @@
 import Header from '@/components/Layout/Header';
 import { useSession } from 'next-auth/react';
 
-export default function DashboardLayout({ children, users, goals, displayevents, login }) {
+export default function DashboardLayout({
+  children,
+  displaybeskeder,
+  displayforsidehero,
+  displaygoals,
+  displayevents,
+  login,
+}) {
   const { data: session, status } = useSession();
 
   const isLoggedIn = true; /* !!session */
@@ -13,8 +20,9 @@ export default function DashboardLayout({ children, users, goals, displayevents,
           <Header />
         </div>
         <div className='flex flex-wrap gap-5 p-4'>
-          {users}
-          {goals}
+          {displayforsidehero}
+          {displaybeskeder}
+          {displaygoals}
           {displayevents}
         </div>
         <div>{children}</div>
